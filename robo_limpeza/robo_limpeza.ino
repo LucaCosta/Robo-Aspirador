@@ -30,7 +30,7 @@ void setup() {
   pinMode(RED_LED, OUTPUT);
 
   // sensor digital input
-  // pinMode(INTERRUPT_PIN, INPUT);
+  pinMode(INTERRUPT_PIN, INPUT);
 
   // interruption
   // pinMode(INTERRUPT_PIN, INPUT_PULLUP);
@@ -47,6 +47,16 @@ void loop() {
   // Robot ON
   digitalWrite(RED_LED, HIGH);
 
+  move(1000);
+  turn_left();
+  move(1000);
+  turn_left();
+  move(1000);
+  turn_left();
+  move(1000);
+  turn_left();
+
+  delay(10);
 }
 
 int left_is_clear(void){
@@ -73,10 +83,10 @@ void turn_left(void){
   l_motor(STOP); 
 }
 
-void move(void) {
+void move(int distance) {
   r_motor(FORWARD);
   l_motor(FORWARD);
-  delay(25);
+  delay(5 * distance);
   r_motor(STOP);
   l_motor(STOP);  
 }
@@ -134,5 +144,5 @@ void l_motor_velocity(int velocity){
 }
 
 void interrupt_function() {
-  ;
+  digitalWrite(BLUE_LED, HIGH);
 }
